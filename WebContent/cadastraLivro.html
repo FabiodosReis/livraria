@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+	<title>Livraria</title>	
+	<link rel="stylesheet" href="css/bootstrap.min.css"/>
+	<link rel="stylesheet" href="css/cadastraLivro.css"/>	
+</head>
+	<body>
+		<header class="container-fluid">
+			<ul>
+				<li>Livro</li>
+				<li>Autor</li>
+				<li>Editora</li>
+				<li>Sair</li>
+			</ul>
+		</header>
+		
+		<main>			
+			<section class="container-fluid">		
+				<div class="panel panel-primary">
+					<div class="panel-heading">
+						<div class="clearfix">
+							 <h3 class="panel-title pull-left">Cadastrar Livro</h3>
+		                	<a href="pesquisaLivro.html" class="btn btn-link pull-right link-lista-livro">Lista de Livros</a>							
+						</div>
+					</div>
+					<div class="panel-body">
+						  <form data-toggle="validator" class="form-horizontal">
+						  	<div class="form-group has-feedback">
+						  		<label class="col-sm-1 control-label">Nome</label>
+						  		<div class="col-sm-6">
+						  			<input type="text" id="input-nome" data-error="Campo obrigatório" required="required" class="form-control"/>
+						  			<span class="glyphicon form-control-feedback"></span>						  									  		
+						  		</div>						  		
+						  	</div>
+						  	
+						  	<div class="form-group has-feedback">
+						  		<label class="col-sm-1 control-label">Descrição</label>
+						  		<div class="col-sm-6">
+						  			<input type="text" id="input-descricao" data-error="Campo obrigatório" required="required" class="form-control"/>
+						  			<span class="glyphicon form-control-feedback"></span>						  		
+						  		</div>
+						  	</div>	
+						  	
+						  	<div class="form-group has-feedback">
+						  		<label class="col-sm-1 control-label">Valor</label>
+						  		<div class="col-sm-6">
+						  			<input type="text" id="input-valor" required="required" data-error="Campo obrigatório" class="form-control"/>
+						  			<span class="glyphicon form-control-feedback"></span>						  		
+						  		</div>
+						  	</div>
+						  	
+						  	<div class="form-group has-feedback">
+						  		<label class="col-sm-1 control-label">Isbn</label>
+						  		<div class="col-sm-6">
+						  			<input type="text" id="input-isbn" data-error="Campo obrigatório" required="required" class="form-control"/>
+						  			<span class="glyphicon form-control-feedback"></span>						  		
+						  		</div>
+						  	</div>
+						  	
+						  	<div class="form-group">
+						  		<label class="col-sm-1 control-label">Autor</label>
+						  		<div class="col-sm-6">
+						  			<select class="form-control" data-error="Campo obrigatório" id="input-autor">
+						  				<option value="0">Selecione um autor</option>
+						  			</select>						  		
+						  		</div>
+						  	</div>		  	
+						  	
+						  	<button type="submit" id="btn-cadastrar" class="btn btn-primary col-sm-offset-1">Salvar</button>			           
+		              		
+		         		  </form><!-- fim do formulario de cadastro -->				
+					</div>
+				</div>     	
+			</section>	
+		</main>
+		
+		<footer class="container-fluid">
+			
+		</footer>
+				
+	</body>
+	
+	
+	<script src="js/jquery-2.2.3.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/validator.min.js"></script>
+	<script src="js/cadastraLivro.js"></script>	
+	<script src="js/bootstrap-notify.min.js"></script>	
+	
+</html>

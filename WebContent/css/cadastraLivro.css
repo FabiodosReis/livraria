@@ -1,0 +1,43 @@
+@CHARSET "UTF-8";
+
+header{	
+	height: 80px;	
+	padding-top: 51px;
+	position: relative;
+	background-color: orange;
+	color:#FFFFFF;
+}
+
+footer{	
+	
+	border-top: 1px solid rgba(0,0,0,.4);	
+	margin-top: 60px;
+	
+	}
+
+ul{
+	list-style: none;	
+	position: absolute;
+	right: 0px;	
+}
+
+li{
+	
+	display: inline;
+	margin-right: 20px;
+	font-size: 22px;
+}
+
+section{
+	
+	margin-top: 20px;
+}
+
+.panel-title{
+	margin-top: 10px;
+}
+
+.link-lista-livro{
+	color: #FFFFFF;
+}
+
