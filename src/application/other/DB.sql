@@ -1,0 +1,48 @@
+CREATE SCHEMA IF NOT EXISTS `livraria` DEFAULT CHARACTER SET latin1;
+
+USE livraria;
+
+CREATE TABLE IF NOT EXISTS `livraria`.`login` (
+  `login` VARCHAR(255) NOT NULL,
+  `senha` VARCHAR(255) NOT NULL,
+  PRIMARY KEY (`login`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = latin1;
+
+CREATE TABLE IF NOT EXISTS `livraria`.`editora` (
+  `codigo` INT(11) NOT NULL AUTO_INCREMENT,
+  `nome` VARCHAR(120) NOT NULL,
+  `cidade` VARCHAR(120) NOT NULL,
+  PRIMARY KEY (`codigo`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 1
+DEFAULT CHARACTER SET = latin1;
+
+CREATE TABLE IF NOT EXISTS `livraria`.`autor` (
+  `codigo` INT(11) NOT NULL AUTO_INCREMENT,
+  `nome` VARCHAR(100) NULL DEFAULT NULL,
+  `dataNascimento` DATE NULL DEFAULT NULL,
+  `email` VARCHAR(20) NOT NULL,
+  `ativo` TINYINT(4) NULL DEFAULT '1',
+  PRIMARY KEY (`codigo`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 1
+DEFAULT CHARACTER SET = latin1;
+
+
+CREATE TABLE IF NOT EXISTS `livraria`.`livro` (
+  `codigo` INT(11) NOT NULL AUTO_INCREMENT,
+  `nome` VARCHAR(200) NOT NULL,
+  `descricao` VARCHAR(120) NOT NULL,
+  `isbn` VARCHAR(30) NOT NULL,
+  `valor` DECIMAL(10,2) NULL DEFAULT NULL,
+  `autorFk` INT(11) NULL DEFAULT NULL,
+  PRIMARY KEY (`codigo`),
+  INDEX `autorFk` (`autorFk` ASC),
+  CONSTRAINT `livro_ibfk_1`
+    FOREIGN KEY (`autorFk`)
+    REFERENCES `livraria`.`autor` (`codigo`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 1
+DEFAULT CHARACTER SET = latin1;
+
