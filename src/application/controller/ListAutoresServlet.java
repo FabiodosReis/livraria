@@ -10,11 +10,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import application.model.Autor;
 import application.process.AutorProcess;
 
-@WebServlet(asyncSupported = true, urlPatterns = { "/ListAutoresServlet" })
+@WebServlet(asyncSupported = true, urlPatterns = { "/listAutoresServlet" })
 public class ListAutoresServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -27,7 +28,9 @@ public class ListAutoresServlet extends HttpServlet {
 		
 			List<Autor> autores = new AutorProcess().listar();
 			
-			String json = new Gson().toJson(autores);
+			Gson gSon = new GsonBuilder().setDateFormat("dd-MM-yyyy").create();
+			
+			String json = gSon.toJson(autores);
 			
 			response.setCharacterEncoding("UTF-8");
 			

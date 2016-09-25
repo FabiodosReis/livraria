@@ -18,7 +18,7 @@
 	
 	var getAutores = function(){		
 					
-		$.getJSON('ListAutoresServlet').done(function(response){			
+		$.getJSON('listAutoresServlet').done(function(response){			
 			if(response){
 				$(response).each(function(i,v){					
 					$('#input-autor').append(
@@ -39,7 +39,7 @@
 	
 	var get = function(){
 		
-		var url = window.location.search;
+		var url = window.location.search;		
 		
 		livroCodigo = parseInt(url.substring(url.indexOf('=')+1,url.lenght));		
 		

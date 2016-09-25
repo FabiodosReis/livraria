@@ -19,37 +19,57 @@ public class EditoraProcess {
 	}
 	
 	
-	public void salvar(Editora editora) throws NegocioException, SQLException{
+	public void persistir(Editora editora) throws NegocioException{
 		
-		if(editora.getNome().equals("") || editora.getNome() == null){
+		try{
+		
+			if(editora.getNome().equals("") || editora.getNome() == null){
+				
+				throw new NegocioException("O Nome da editora é Obrigátorio");
+			}
 			
-			throw new NegocioException("O Nome da editora é Obrigátorio");
+			if(editora.getCidade().equals("") || editora.getCidade() == null){
+				
+				throw new NegocioException("O Campo cidade é Obrigátorio");
+			}		
+			
+			if(editora.getCodigo() != null && editora.getCodigo() != 0){
+				
+				new EditoraDao(conn).editar(editora);
+				
+			}else{
+				
+				new EditoraDao(conn).salvar(editora);			
+				
+			}		
+			
+			conn.close();
+			
+		}catch(SQLException e){
+			
+			throw new RuntimeException(e.getMessage());
 		}
-		
-		if(editora.getCidade().equals("") || editora.getCidade() == null){
-			
-			throw new NegocioException("O Campo cidade é Obrigátorio");
-		}
-		
-		if(editora.getCodigo() != 0){
-			
-			new EditoraDao(conn).editar(editora);
-			
-		}else{
-			
-			new EditoraDao(conn).salvar(editora);			
-			
-		}		
-		
-		conn.close();
 	}
 	
-	public void excluir(Long codigo) throws SQLException{
+	public void excluir(Long codigo){
 		
-		new EditoraDao(conn).excluir(codigo);
+		try {
+			
+			new EditoraDao(conn).excluir(codigo);
 		
-		conn.close();		
+			conn.close();
+			
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		}		
 		
+	}
+
+
+	public Editora get(Long codigo) {
+		
+		return new EditoraDao(conn).get(codigo);
 	}	
 
 }

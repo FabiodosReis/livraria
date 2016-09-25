@@ -21,7 +21,7 @@ public class AutorProcess {
 		return this.autorDao.listar();
 	}
 
-	public void salvar(Autor autor){
+	public void persistir(Autor autor) throws NegocioException{
 		
 		try{
 		
@@ -61,19 +61,30 @@ public class AutorProcess {
 			
 			throw new RuntimeException(e.getMessage());			
 			
-		}catch (NegocioException e) {
-			
-			
 		}		
-		
 	}
 	
-	public void excluir(Autor autor) throws SQLException{
+	public void excluir(Long codigo){
 		
-		new AutorDao(conn).excluir(autor);
+		try {
 		
-		conn.close();
+			new AutorDao(conn).excluir(codigo);		
+		
+			conn.close();
+			
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		}
 	}
+	
+	
+	public Autor get(Long id){
+		
+		return new AutorDao(conn).buscarPeloCodigo(id);
+	}
+	
+	
 	
 
 }

@@ -5,6 +5,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,7 +31,7 @@ public class AutorDao {
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setString(1, autor.getNome());
             ps.setString(2, autor.getEmail());
-            ps.setDate(3, (Date)autor.getDataNascimento());
+            ps.setTimestamp(3, new Timestamp(autor.getDataNascimento().getTime()));
 
             ps.execute();
 
@@ -44,7 +45,7 @@ public class AutorDao {
 
     public List<Autor> listar() {
 
-        String sql = "SELECT * FROM autor WHERE ativo = true";
+        String sql = "SELECT codigo,nome,dataNascimento,email FROM autor WHERE ativo = true";
 
         List<Autor> autores = new ArrayList<Autor>();
 
@@ -60,7 +61,9 @@ public class AutorDao {
                 autor.setCodigo(rs.getLong("codigo"));
                 autor.setNome(rs.getString("nome"));
                 autor.setEmail(rs.getString("email"));
-                autor.setDataNascimento(rs.getDate("dataNascimento"));
+                
+                Date data = rs.getDate("dataNascimento");               
+                autor.setDataNascimento(data);               
 
                 autores.add(autor);
 
@@ -86,7 +89,7 @@ public class AutorDao {
             
             ps.setString(1, autor.getNome());
             ps.setString(2, autor.getEmail());
-            ps.setDate(3, (Date)autor.getDataNascimento());
+            ps.setDate(3, new Date(autor.getDataNascimento().getTime()));
             ps.setLong(4, autor.getCodigo());
                         
             ps.execute();       
@@ -101,7 +104,7 @@ public class AutorDao {
     
     public Autor buscarPeloCodigo(Long codigo){
     	
-    	String sql = "SELECT * FROM "
+    	String sql = "SELECT codigo,nome,dataNascimento,email FROM "
     			+ "autor "
     			+ "WHERE codigo = ? AND ativo = true";
     	
@@ -112,7 +115,15 @@ public class AutorDao {
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.setLong(1, codigo);
 			
-			ps.execute();
+			ResultSet rs = ps.executeQuery();
+			
+			while (rs.next()) {
+				autor.setCodigo(rs.getLong("codigo"));
+				autor.setNome(rs.getString("nome"));
+				autor.setDataNascimento(rs.getDate("dataNascimento"));
+				autor.setEmail(rs.getString("email"));
+				
+			}
 			
 		} catch (SQLException e) {
 			
@@ -124,14 +135,14 @@ public class AutorDao {
     	
     }
     
-    public void excluir(Autor autor){
+    public void excluir(Long codigo){
     	
     	String Sql = "UPDATE autor SET ativo = false WHERE codigo = ?";
     	
     	try {
     		
 			PreparedStatement ps = conn.prepareStatement(Sql);
-			ps.setLong(1, autor.getCodigo());
+			ps.setLong(1, codigo);
 			
 			ps.execute();
 			

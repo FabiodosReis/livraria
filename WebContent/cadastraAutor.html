@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+	<title>Livraria</title>	
+	<link rel="stylesheet" href="css/bootstrap.min.css"/>
+	<link rel="stylesheet" href="css/cadastraLivro.css"/>
+	<link rel="stylesheet" href="css/bootstrap-datepicker.min.css"/>	
+	
+</head>
+	<body>
+		<header class="container-fluid">
+			<ul>
+				<li>Livro</li>
+				<li>Autor</li>
+				<li>Editora</li>
+				<li>Sair</li>
+			</ul>
+		</header>
+		
+		<main>			
+			<section class="container-fluid">		
+				<div class="panel panel-primary">
+					<div class="panel-heading">
+						<div class="clearfix">
+							 <h3 class="panel-title pull-left">Cadastrar Livro</h3>
+		                	<a href="pesquisaAutor.html" class="btn btn-link pull-right link-lista-livro">Lista de Autores</a>							
+						</div>
+					</div>
+					<div class="panel-body">
+						  <form data-toggle="validator" class="form-horizontal">
+						  	<div class="form-group has-feedback">
+						  		<label class="col-sm-2 control-label">Nome</label>
+						  		<div class="col-sm-6">
+						  			<input type="text" id="input-nome" data-error="Campo obrigatório" required="required" class="form-control"/>
+						  			<span class="glyphicon form-control-feedback"></span>						  									  		
+						  		</div>						  		
+						  	</div>
+						  	
+						  	<div class="form-group has-feedback">
+						  		<label class="col-sm-2 control-label">Data de Nascimento</label>
+						  		<div class="col-sm-6">
+						  			<input type="text" id="input-data-nascimento" data-error="Campo obrigatório" required="required" class="form-control"/>
+						  			<span class="glyphicon form-control-feedback"></span>						  		
+						  		</div>
+						  	</div>	
+						  	
+						  	<div class="form-group has-feedback">
+						  		<label class="col-sm-2 control-label">Email</label>
+						  		<div class="col-sm-6">
+						  			<input type="email" pattern="[^@]+@[^@]+\.[a-zA-Z]{2,6}" id="input-email" required="required" data-error="Campo obrigatório" class="form-control"/>
+						  			<span class="glyphicon form-control-feedback"></span>						  		
+						  		</div>
+						  	</div>				  
+						  	
+						  	<button type="submit" id="btn-cadastrar" class="btn btn-primary col-sm-offset-1">Salvar</button>			           
+		              		
+		         		  </form><!-- fim do formulario de cadastro -->				
+					</div>
+				</div>     	
+			</section>	
+		</main>
+		
+		<footer class="container-fluid">
+			
+		</footer>
+				
+	</body>
+	
+	<script src="js/jquery-2.2.3.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/validator.min.js"></script>
+	<script src="js/cadastraAutor.js"></script>	
+	<script src="js/bootstrap-notify.min.js"></script>
+	<script src="js/bootstrap-datepicker.min.js"></script>
+	<script src="js/bootstrap-datepicker.pt-BR.min.js"></script>
+	<script src="js/validarData.js"></script>
+	
+</html>

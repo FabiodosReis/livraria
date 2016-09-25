@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import application.model.Editora;
-import application.util.ConnectionFactory;
 
 
 /**
@@ -112,5 +111,32 @@ public class EditoraDao{
 		}
         
     }   
+    
+    public Editora get(Long codigo){
+    	
+    	Editora editora = new Editora();
+    	
+    	try {
+    	
+    		String sql = "SELECT codigo, nome, cidade FROM editora WHERE codigo = ?";   	
+    	
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setLong(1, codigo);
+			ResultSet rs = ps.executeQuery();
+			
+			while (rs.next()) {
+				editora.setCodigo(rs.getLong("codigo"));
+				editora.setNome(rs.getString("nome"));
+				editora.setCidade(rs.getString("cidade"));
+				
+			}
+			
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		}
+    	
+    	return editora;
+    }
     
 }

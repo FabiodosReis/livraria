@@ -1,76 +1,55 @@
-(function($){	
+(function($){
 	
+	var _autor = {};
 	
-	var _livro = {};
-	
-	
-	$(function(){	
+	$(function(){
 		
-		getAll_livro();		
+		getAll();
 		registInteraction();		
 		
-	});
+	});	
 	
-	
-	var getAll_livro = function(){
+	var getAll = function(){	
 		
-		$.getJSON('ListLivrosServlet')
-		.done(function(response){		
-			
-			var tabela = $("table tbody");
-			tabela.empty();
-			obj = response;
-			
-			if(obj.length){
-				
-				$(obj).each(function(i,value){
-					
+		var tabela = $("table tbody");
+		tabela.empty();
+		
+		$.getJSON('listAutoresServlet').done(function(response){			
+			if(response){
+				$(response).each(function(i,v){					
 					tabela.append(
 							"<tr>" +
-								"<td>" + obj[i].codigo + "</td>" +	
-								"<td>" + obj[i].nome + "</td>" +	
-								"<td>" + obj[i].descricao + "</td>" +	
-								"<td>" + obj[i].valor + "</td>" +	
-								"<td>" + obj[i].isbn + "</td>" +	
-								"<td>" + obj[i].autor.nome + "</td>" +	
+								"<td>" + response[i].codigo + "</td>" +
+								"<td>" + response[i].nome + "</td>" +
+								"<td>" + response[i].dataNascimento + "</td>" +
+								"<td>" + response[i].email + "</td>" +
 								"<td>" + 
 									"<a href='#'><span class='glyphicon glyphicon-pencil'></span></a>" +
 									"<a href='#' class='link-excluir'><span class='glyphicon glyphicon-remove' data-toggle='modal' data-target='#modal-excluir'></span></a>" +							
 								"</td>" +
 							"</tr>"
-					);
-					
-				});				
-				
-			}else{
-				
-				tabela.append(
-						
-						"<tr>" + "<td colspan='7'>Nenhuma informação encontrada</td>"+"</tr>"
-				);			
+					);					
+				});
 				
 			}			
-			
-		}		
 		
-		).fail(function(error){
+		}).fail(function(error){
 			
-			console.log("Erro:" + error.statusText);
-			
-		});
-	};
+			console.log(error.statusText);
+		});	
+				
+	};	
 	
 	
-	
-	var remove_livro = function(id){
+	var remove_autor = function(id){
 		
-		$.post('RemovLivroServlet',{codigo: id}).done(function(response){
+		$.post('removAutorServlet',{codigo: id}).done(function(response){
 			
-			getAll_livro();
+			getAll();
 			
 			$.notify({
 				icon: "glyphicon glyphicon-success-sign",
-				message: "Livro Excluído com sucesso"
+				message: "Autor Excluído com sucesso"
 				
 			},
 			{
@@ -96,9 +75,9 @@
 				var codigo = $(this).parents('tr').find('td:eq(0)').text();
 				var nome = $(this).parents('tr').find('td:eq(1)').text();
 				
-				_livro.codigo = codigo;				
+				_autor.codigo = codigo;				
 				
-				$("#nome-livro").text(nome);				
+				$("#nome-autor").text(nome);				
 				
 			}			
 			
@@ -106,7 +85,7 @@
 		
 		$("#btn-excluir").on('click',function(){
 			
-			remove_livro(parseInt(_livro.codigo));	
+			remove_autor(parseInt(_autor.codigo));	
 						
 			
 		}); //exclui o livro ao clicar no botao de excluir no modal	
@@ -118,11 +97,11 @@
 			
 			var codigo = $(this).parents('tr').find('td:eq(0)').text();
 			
-			window.location = "cadastraLivro.html?codigo=" + parseInt(codigo);					
+			window.location = "cadastraAutor.html?codigo=" + parseInt(codigo);					
 			
 		});
 			
-	};	// manda o livro selecionado par a página de edição
+	};	// manda o autor selecionado par a página de edição	
 	
 	
 })(jQuery);

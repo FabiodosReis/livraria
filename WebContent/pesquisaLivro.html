@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+	<title>Livraria</title>	
+	<link rel="stylesheet" href="css/bootstrap.min.css"/>
+	<link rel="stylesheet" href="css/pesquisaLivro.css"/>	
+</head>
+	<body>
+		<header>
+			<ul>
+				<li>Livro</li>
+				<li>Autor</li>
+				<li>Editora</li>
+				<li>Sair</li>
+			</ul>
+		</header>
+		
+		<main>			
+			<section class="container-fluid">
+				<div class="panel panel-primary">
+					<div class="panel-heading">
+					 <div class="clearfix">
+					    <h3 class="panel-title pull-left">Pesquisar Livros</h3>
+		                <a href="cadastraLivro.html" class="btn btn-link pull-right link-novo-titulo">Novo Livro</a>
+					 </div>			
+					</div>
+					<div class="panel-body">
+					 <div class="table-responsive">					     
+						<table class="table table-bordered table-striped">
+							<thead>
+								<tr>             
+									<th class="text-left col-sm-1">Codigo</th>
+									<th class="text-left col-sm-3">Livro</th>
+									<th class="text-left col-sm-2">Descrição</th>
+									<th class="text-left col-sm-1">Valor</th>
+									<th class="text-left col-sm-2">Isbn</th>
+									<th class="col-sm-2 text-left">Autor</th>
+									<th class="col-sm-1 text-center">#</th>
+								</tr>              
+							</thead>
+							<tbody>								
+							</tbody>            
+						</table>  
+						</div> 
+					</div>			
+				</div>		
+			</section>
+				
+			
+			<!-- modal -->
+			<div class="modal fade" tabindex="-1" id="modal-excluir">
+				  <div class="modal-dialog">
+				    <div class="modal-content">
+				      <div class="modal-header">
+				        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				        <h4 class="modal-title">Excluir</h4>
+				      </div>
+				      <div class="modal-body">
+				     
+				        <p class='modal-mensagem'>Deseja excluir: <span id="nome-livro"></span></p>
+				      </div>
+				      <div class="modal-footer">
+				        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+				        <button type="button" class="btn btn-primary" data-dismiss="modal" id="btn-excluir">Excluir</button>				        
+				      </div>
+				    </div><!-- /.modal-content -->
+				  </div><!-- /.modal-dialog -->
+			</div><!-- /.modal -->	
+		</main>
+		
+		<footer>
+			
+		</footer>		
+	</body>
+	
+	
+	<script src="js/jquery-2.2.3.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/pesquisaLivro.js"></script>
+	<script src="js/bootstrap-notify.min.js"></script>
+</html>
